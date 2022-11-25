@@ -141,7 +141,7 @@ router.post(
       from: "rajeshmn47@gmail.com",
       to: email,
       subject: "Sending Email using Node.js[nodemailer]",
-      text: `click on this link to reset your password http://127.0.0.1:3000/resetpassword/?token=${server_token}`,
+      text: `click on this link to reset your password https://outshade-frontend-ctyc.vercel.app/resetpassword/?token=${server_token}`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
