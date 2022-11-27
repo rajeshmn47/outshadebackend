@@ -10,11 +10,13 @@ const multer = require("multer");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
-var device = require('express-device');
+var device = require("express-device");
+const errorMiddleware = require("./error");
 app.use(device.capture());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
+app.use(errorMiddleware);
 const url = "http://localhost:3000";
 app.use(
   cors({
@@ -68,8 +70,8 @@ app.get("/createproduct", async (req, res) => {
 app.get("/findout", async (req, res) => {
   res.send("API running");
 });
-app.get('/hello',function(req,res) {
-  res.send("Hi to "+req.device.type.toUpperCase()+" User");
+app.get("/hello", function (req, res) {
+  res.send("Hi to " + req.device.type.toUpperCase() + " User");
 });
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
